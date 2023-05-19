@@ -160,6 +160,5 @@ export class AppComponent {
         nominee: false
       });
     }
-    console.log(this.registrationForm.value);
   }
 }
