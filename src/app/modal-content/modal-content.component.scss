@@ -1,0 +1,12 @@
+ul{
+    list-style-type: none;
+    padding-left: 0;
+    li{
+        display: inline;
+        cursor: pointer;
+        &.active{
+            color: #1a1ab4;
+            border-bottom: 1px solid #1a1ab4;
+        }
+    }
+}

@@ -1,0 +1,136 @@
+<div [formGroup]="param.form">
+    <div class="form-row">
+        <div class="form-col">
+            <div class="form-outline">
+                <label class="form-label">First Name <span class="text-danger">*</span></label>
+                <input type="text" class="form-control" formControlName="fname"
+                    [ngClass]="{ 'is-invalid': param.submitted && param.f['fname'].errors }"
+                    placeholder="Enter your First Name" />
+                <div *ngIf="param.submitted && param.f['fname'].errors" class="invalid-feedback">First Name is required
+                </div>
+            </div>
+        </div>
+        <div class="form-col">
+            <div class="form-outline">
+                <label class="form-label">Last Name <span class="text-danger">*</span></label>
+                <input type="text" class="form-control" formControlName="lname"
+                    [ngClass]="{ 'is-invalid': param.submitted && param.f['lname'].errors }"
+                    placeholder="Enter your Last Name" />
+
+                <div *ngIf="param.submitted && param.f['lname'].errors" class="invalid-feedback">Last Name is required
+                </div>
+            </div>
+        </div>
+        <div class="form-col">
+            <div class="form-outline">
+                <label class="form-label">Date of Birth <span class="text-danger">*</span></label>
+                <input type="date" class="form-control" formControlName="dob"  [max]='restrictDate'
+                    [ngClass]="{ 'is-invalid': param.submitted && param.f['dob'].errors }"
+                    placeholder="Enter your First Name" />
+
+                <div *ngIf="param.submitted && param.f['dob'].errors" class="invalid-feedback">Date of Birth is required
+                </div>
+            </div>
+        </div>
+        <div class="form-col">
+            <div class="form-outline">
+                <label class="form-label">Email</label>
+                <input type="text" class="form-control" formControlName="email"
+                    [ngClass]="{ 'is-invalid': param.submitted && param.f['email'].errors }"
+                    placeholder="Enter your Email id" />
+
+                <div *ngIf="param.submitted && param.f['email'].errors" class="invalid-feedback">Email is invalid</div>
+            </div>
+        </div>
+        <div class="form-col">
+            <div class="form-outline">
+                <label class="form-label">Mobile Number <span class="text-danger">*</span></label>
+                <input type="text" class="form-control" formControlName="mobile" (keypress)="mobileValidation($event)"
+                    (blur)="mobileLength(param.f['mobile'].value.length)" maxlength="10"
+                    [ngClass]="{ 'is-invalid': (param.submitted && param.f['mobile'].errors )|| ismobileInvalid }"
+                    placeholder="Enter your Mobile Number" />
+                <div *ngIf="ismobileInvalid" class="invalid-feedback">Mobile Number is not valid</div>
+                <div *ngIf="param.submitted && param.f['mobile'].errors" class="invalid-feedback">Mobile Number is required
+                </div>
+            </div>
+        </div>
+        <div class="form-col">
+            <div class="form-outline">
+                <label class="form-label">Id Prototype <span class="text-danger">*</span></label>
+                <select formControlName="idType" class="form-control">
+                    <option value="aadhar">Aadhar</option>
+                    <option value="pan">Pan</option>
+                    <option value="passport">Passport</option>
+                    <option value="driving license">Driving License</option>
+                    <option value="voter id">Voter Id</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-col">
+            <div class="form-outline">
+                <label class="form-label">Id Number <span class="text-danger">*</span></label>
+                <input type="text" class="form-control" formControlName="id"
+                    [ngClass]="{ 'is-invalid': param.submitted && param.f['id'].errors }" placeholder="Enter your Id number" />
+        
+                <div *ngIf="param.submitted && param.f['id'].errors" class="invalid-feedback">Id number is required
+                </div>
+            </div>
+        </div>
+        <div class="form-col">
+            <div class="form-outline">
+                <label class="form-label">Address Line 1 <span class="text-danger">*</span></label>
+                <input type="text" class="form-control" [formControl]="param.form.get('address.address1')"
+                    [ngClass]="{ 'is-invalid': param.submitted && param.form.get('address.address1').errors }"
+                    placeholder="Enter your address" />
+        
+                <div *ngIf="param.submitted && param.form.get('address.address1').errors" class="invalid-feedback">
+                    Address is required
+                </div>
+            </div>
+        </div>
+        <div class="form-col">
+            <div class="form-outline">
+                <label class="form-label">Address Line 2</label>
+                <input type="text" class="form-control" [formControl]="param.form.get('address.address2')"
+                    placeholder="Enter your address" />
+            </div>
+        </div>
+        <div class="form-col">
+            <div class="form-outline">
+                <label class="form-label">Address Line 3</label>
+                <input type="text" class="form-control" [formControl]="param.form.get('address.address3')"
+                    placeholder="Enter your address" />
+            </div>
+        </div>
+        <div class="form-col">
+            <div class="form-outline">
+                <label class="form-label">Landmark</label>
+                <input type="text" class="form-control" formControlName="landmark" placeholder="Enter your Landmark" />
+            </div>
+        </div>
+        <div class="form-col">
+            <div class="form-outline">
+                <label class="form-label">City <span class="text-danger">*</span></label>
+                <input type="text" class="form-control" formControlName="city"
+                    [ngClass]="{ 'is-invalid': param.submitted && param.f['city'].errors }" placeholder="Enter your city" />
+        
+                <div *ngIf="param.submitted && param.f['city'].errors" class="invalid-feedback">City is required</div>
+            </div>
+        </div>
+        <div class="form-col">
+            <label class="form-label">State <span class="text-danger">*</span></label>
+            <input type="text" class="form-control" formControlName="state"
+                [ngClass]="{ 'is-invalid': param.submitted && param.f['state'].errors }" placeholder="Enter your state" />
+        
+            <div *ngIf="param.submitted && param.f['state'].errors" class="invalid-feedback">State is required</div>
+        </div>
+        
+        <div class="form-col" *ngIf="param.nominee">
+            <label class="d-block form-label mb-2">Nominee <span class="text-danger">*</span></label>
+            <label><input type="radio" class="form-check-input" [value]=true formControlName="nominee"> Yes </label>
+            <label class="ms-3"><input type="radio" class="form-check-input" [value]=false formControlName="nominee"> No
+            </label>
+        
+        </div>
+    </div>
+</div>

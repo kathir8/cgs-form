@@ -1,0 +1,44 @@
+.is-invalid {
+    border: 1px solid #ff000094;
+    background: #ff10001f;
+}
+
+.form-control:focus {
+    box-shadow: none;
+}
+
+.form-row {
+    display: flex;
+    flex-wrap: wrap;
+
+}
+.form-col {
+    width: 25%;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+/* Desktop+ */
+@media (min-width: 1200px) {
+    
+    .form-col {
+        width: 25%;
+    }
+}
+
+/* Laptop */
+@media (min-width: 990px) and (max-width: 1200px) {
+    .form-col {
+            width: 33%;
+        }
+}
+@media (min-width: 500px) and (max-width: 990px) {
+    .form-col {
+            width: 50%;
+        }
+}
+@media (max-width: 500px) {
+    .form-col {
+            width: 100%;
+        }
+}

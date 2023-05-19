@@ -1,0 +1,52 @@
+<div class="modal-header py-2">
+    <h5 class="modal-title">{{type === 'guardian' ? 'Other Details' : 'Nominee Details'}}</h5>
+</div>
+<div class="modal-body">
+    <ul *ngIf="type === 'guardian'">
+        <li (click)="active = 'nomineeDetails'" [ngClass]="{'active':active==='nomineeDetails'}" class="px-3">Nominee Details</li>
+        <li (click)="active = 'guardianDetails'"[ngClass]="{'active':active==='guardianDetails'}" class="px-3">Guardian Details</li>
+    </ul>
+        <div class="row">
+            <div class="col-6">
+                <label>Name:</label>
+                <div>{{obj[active].fname + ' '+ obj[active].lname | titlecase}}</div>
+            </div>
+            <div class="col-6">
+                <label>Date Of Birth:</label>
+                <div>{{obj[active].dob}}</div>
+            </div>
+            <div class="col-6 mt-2" *ngIf="obj[active].email">
+                <label>Email:</label>
+                <div>{{obj[active].email}}</div>
+            </div>
+            <div class="col-6 mt-2">
+                <label>Mobile:</label>
+                <div>{{obj[active].mobile}}</div>
+            </div>
+            <div class="col-6 mt-2">
+                <label>ID Proof:</label>
+                <div>{{obj[active].idType | titlecase}} - {{obj[active].id}}</div>
+            </div>
+            <div class="col-6 mt-2" *ngIf="obj[active].landmark">
+                <label>Landmark:</label>
+                <div>{{obj[active].landmark}}</div>
+            </div>
+            <div class="col-12 mt-2">
+                <label>Address:</label>
+                <div>{{obj[active].address.address1}}
+                    <ng-container *ngIf="obj[active].address.address2">,
+                        {{obj[active].address.address2}}</ng-container>
+                    <ng-container *ngIf="obj[active].address.address3">,
+                        {{obj[active].address.address3}}</ng-container>
+                </div>
+            </div>
+            <div class="col-6 mt-2">
+                <label>City:</label>
+                <div>{{obj[active].city}}</div>
+            </div>
+            <div class="col-6 mt-2">
+                <label>State:</label>
+                <div>{{obj[active].state}}</div>
+            </div>
+        </div>
+</div>
